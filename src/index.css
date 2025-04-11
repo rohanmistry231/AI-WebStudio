@@ -1,0 +1,218 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 20% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 222 47% 11%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 210 30% 96%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 222 47% 11%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222 47% 11%;
+
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 75%;
+
+    --accent: 217 33% 17%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 212 27% 84%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-normal;
+  }
+
+  ::selection {
+    @apply bg-primary/10 text-primary;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-background/50 backdrop-blur-xl border border-border/50 shadow-sm;
+  }
+  
+  .glass-card {
+    @apply bg-background/30 backdrop-blur-xl border border-border/50 shadow-sm;
+  }
+  
+  .glass-dark {
+    @apply dark:bg-background/30 dark:backdrop-blur-xl dark:border dark:border-border/10 dark:shadow-sm;
+  }
+  
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .section-padding {
+    @apply py-20 px-6 md:px-8 lg:px-12 xl:px-16;
+  }
+  
+  .heading-xl {
+    @apply text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-balance;
+  }
+  
+  .heading-lg {
+    @apply text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-balance;
+  }
+  
+  .heading-md {
+    @apply text-2xl sm:text-3xl font-bold tracking-tight text-balance;
+  }
+  
+  .heading-sm {
+    @apply text-xl sm:text-2xl font-bold tracking-tight text-balance;
+  }
+  
+  .paragraph {
+    @apply text-base leading-relaxed text-muted-foreground max-w-prose text-balance;
+  }
+  
+  .fade-in-view {
+    @apply opacity-0 animate-fade-in;
+  }
+  
+  .slide-up-view {
+    @apply opacity-0 translate-y-8 animate-slide-up;
+  }
+  
+  .slide-down-view {
+    @apply opacity-0 -translate-y-8 animate-slide-down;
+  }
+  
+  .slide-left-view {
+    @apply opacity-0 translate-x-8 animate-slide-left;
+  }
+  
+  .slide-right-view {
+    @apply opacity-0 -translate-x-8 animate-slide-right;
+  }
+  
+  .parallax-slow {
+    transform: translateY(calc(var(--scroll) * 0.1px));
+    will-change: transform;
+  }
+  
+  .parallax-medium {
+    transform: translateY(calc(var(--scroll) * 0.05px));
+    will-change: transform;
+  }
+  
+  .mask-linear-gradient {
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1.0) 50%, transparent 100%);
+  }
+}
+/* Add these styles to your index.css file */
+
+/* Hide default cursor when our custom cursor is active */
+.custom-cursor-active {
+  cursor: none !important;
+}
+
+.custom-cursor-active * {
+  cursor: none !important;
+}
+
+/* For touch devices, disable the custom cursor */
+@media (hover: none) and (pointer: coarse) {
+  .cursor-dot,
+  .cursor-blob {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+}
+
+/* Add some custom animation effects */
+@keyframes cursor-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+}
+
+.cursor-blob {
+  animation: cursor-pulse 3s ease-in-out infinite;
+}
+
+/* Mobile scroll effect animations */
+@keyframes crazy-blur {
+  0% { filter: blur(10px); transform: scale(1); }
+  25% { filter: blur(20px); transform: scale(1.1); }
+  50% { filter: blur(30px); transform: scale(1.2); }
+  75% { filter: blur(20px); transform: scale(1.1); }
+  100% { filter: blur(10px); transform: scale(1); }
+}
+
+.mobile-scroll-effect {
+  animation: crazy-blur 1s ease-in-out;
+}
