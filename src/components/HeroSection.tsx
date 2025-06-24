@@ -116,7 +116,7 @@ const HeroSection = () => {
             className="flex items-center justify-center gap-4 mt-8 opacity-0"
           >
             <Button size="lg" className="rounded-full" asChild>
-              <Link to="#contact" onClick={scrollToContact}>Let's Start</Link>
+              <Link to="#contact" onClick={scrollToContact}>Get Started</Link>
             </Button>
             <Button 
               variant="outline" 
