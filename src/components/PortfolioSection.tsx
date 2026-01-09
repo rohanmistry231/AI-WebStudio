@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { ArrowRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react'; // still imported but not used anymore — you can remove if you want
+import { Button } from '@/components/ui/button'; // can be removed if no longer needed
+import { Link } from 'react-router-dom'; // can be removed if not used
 import ProjectCard from './ProjectCard';
 import sanityClient from '../sanityClient';
 
@@ -9,9 +9,8 @@ const PortfolioSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
   const projectRefs = useRef<(HTMLDivElement | null)[]>([]);
-  
-  const [projects, setProjects] = useState([]);
-  const [showAll, setShowAll] = useState(false); // Toggle to show all projects
+
+  const [projects, setProjects] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -55,6 +54,7 @@ const PortfolioSection = () => {
       observer.observe(titleRef.current);
     }
     
+    // Observe all project cards once they're rendered
     projectRefs.current.forEach(project => {
       if (project) observer.observe(project);
     });
@@ -85,36 +85,24 @@ const PortfolioSection = () => {
             </p>
           </div>
           
-          <Button 
-            variant="outline" 
-            size="lg" 
-            className="rounded-full self-start"
-            onClick={() => setShowAll(true)} // Show all projects on click
-          >
-            <span className="flex items-center gap-2">
-              View All Projects
-              <ArrowRight className="h-4 w-4" />
-            </span>
-          </Button>
+          {/* Button removed - all projects are shown by default */}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            (showAll || index < 6) && (
-              <div 
-                key={index}
-                ref={el => projectRefs.current[index] = el}
-                className="opacity-0 translate-y-8 animate-slide-up"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <ProjectCard
-                  title={project.title}
-                  category={project.category}
-                  image={project.image}
-                  link={project.link}
-                />
-              </div>
-            )
+            <div 
+              key={index}
+              ref={el => { projectRefs.current[index] = el; }}
+              className="opacity-0 translate-y-8"
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              <ProjectCard
+                title={project.title}
+                category={project.category}
+                image={project.image}
+                link={project.link}
+              />
+            </div>
           ))}
         </div>
       </div>
