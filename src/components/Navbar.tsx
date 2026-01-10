@@ -16,29 +16,42 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    const storedTheme = localStorage.getItem("theme");
-    const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const isDark = storedTheme ? storedTheme === "dark" : systemPrefersDark;
-    document.documentElement.classList.toggle("dark", isDark);
-    setIsDarkMode(isDark);
+    // Get previously saved theme preference
+    const savedTheme = localStorage.getItem("theme");
+
+    let shouldBeDark = false; // ← Light mode is the true default
+
+    // Only respect saved preference if user has explicitly chosen before
+    if (savedTheme !== null) {
+      shouldBeDark = savedTheme === "dark";
+    }
+    // If no saved preference → stay light (shouldBeDark = false)
+
+    // Apply the theme
+    document.documentElement.classList.toggle("dark", shouldBeDark);
+    setIsDarkMode(shouldBeDark);
   }, []);
 
   const toggleDarkMode = () => {
     const newMode = !isDarkMode;
     setIsDarkMode(newMode);
+
+    // Update DOM class
     document.documentElement.classList.toggle("dark", newMode);
+
+    // Save user preference
     localStorage.setItem("theme", newMode ? "dark" : "light");
   };
 
-  const scrollToSection = (sectionId) => {
+  const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const yOffset = -48; // Adjust this value based on py-12 (48px)
+      const yOffset = -48; // for fixed navbar height
       const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
       window.scrollTo({ top: y, behavior: "smooth" });
     }
     setMobileMenuOpen(false);
-  };  
+  };
 
   const navLinks = [
     { name: "Home", id: "hero" },
@@ -59,12 +72,18 @@ const Navbar = () => {
         )}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}>
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+          >
             <button
               onClick={() => scrollToSection("hero")}
               className="text-2xl font-bold tracking-tight flex items-center gap-2 transition-all hover:opacity-80"
             >
-              <div className="w-8 h-8 bg-primary text-primary-foreground rounded-md flex items-center justify-center">AI</div>
+              <div className="w-8 h-8 bg-primary text-primary-foreground rounded-md flex items-center justify-center">
+                AI
+              </div>
               <span>WebStudio</span>
             </button>
           </motion.div>
@@ -80,24 +99,37 @@ const Navbar = () => {
                 {link.name}
               </button>
             ))}
-            <Button onClick={toggleDarkMode} variant="ghost" size="icon" className="ml-2">
+            <Button 
+              onClick={toggleDarkMode} 
+              variant="ghost" 
+              size="icon" 
+              className="ml-2"
+            >
               {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </Button>
           </nav>
 
-          {/* Mobile Navigation Toggle */}
+          {/* Mobile controls */}
           <div className="flex items-center gap-2 md:hidden">
-            <Button onClick={toggleDarkMode} variant="ghost" size="icon">
+            <Button 
+              onClick={toggleDarkMode} 
+              variant="ghost" 
+              size="icon"
+            >
               {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </Button>
-            <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
               {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>
           </div>
         </div>
       </header>
 
-      {/* Mobile Menu Overlay - Full screen with persistent blur */}
+      {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="md:hidden fixed inset-0 z-40 bg-background/80 backdrop-blur-md animate-fade-in">
           <div className="pt-20 px-6">
@@ -118,24 +150,5 @@ const Navbar = () => {
     </>
   );
 };
-
-// Add these styles to your global CSS file
-const globalStyles = `
-/* Add these styles to your global.css or equivalent */
-@keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.animate-fade-in {
-  animation: fade-in 0.3s ease-in-out forwards;
-}
-
-.glass {
-  background: rgba(15, 23, 42, 0.8);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-`;
 
 export default Navbar;
