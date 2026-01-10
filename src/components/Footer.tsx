@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUp } from 'lucide-react';
-import { Mail, Github, Linkedin } from 'lucide-react';
+import { Mail, Github, Linkedin, BriefcaseBusiness, Newspaper } from 'lucide-react';
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -58,6 +58,22 @@ const Footer = () => {
               className="text-muted-foreground hover:text-primary"
             >
               <Mail className="h-6 w-6" />
+            </a>
+            <a 
+              href="https://irohanportfolio.com/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-muted-foreground hover:text-primary"
+            >
+              <BriefcaseBusiness className="h-6 w-6" />
+            </a>
+            <a 
+              href="https://medium.com/@rohanmistry231" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-muted-foreground hover:text-primary"
+            >
+              <Newspaper className="h-6 w-6" />
             </a>
           </div>
           <p className="text-sm text-muted-foreground text-center pt-6">
