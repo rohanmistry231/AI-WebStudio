@@ -31,7 +31,7 @@ const Footer = () => {
               <div className="w-8 h-8 bg-primary text-primary-foreground rounded-md flex items-center justify-center">
                 AI
               </div>
-              <span>WebStudio</span>
+              <span>Web Studio</span>
             </Link>
             <p className="text-sm text-muted-foreground">
               Combining AI innovation with human creativity to build exceptional websites and digital experiences.
