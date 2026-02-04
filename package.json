@@ -49,6 +49,7 @@
     "date-fns": "^3.6.0",
     "embla-carousel-react": "^8.3.0",
     "framer-motion": "^12.5.0",
+    "gsap": "^3.14.2",
     "input-otp": "^1.2.4",
     "lucide-react": "^0.462.0",
     "next-themes": "^0.3.0",

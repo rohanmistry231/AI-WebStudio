@@ -77,7 +77,7 @@ const Footer = () => {
             </a>
           </div>
           <p className="text-sm text-muted-foreground text-center pt-6">
-            &copy; {new Date().getFullYear()} AI WebStudio. All rights reserved.
+            &copy; {new Date().getFullYear()} AI Web Studio. All rights reserved.
           </p>
           </div>
           <button 
