@@ -1,6 +1,6 @@
 
 import React, { useRef, useEffect } from 'react';
-import { Code, Sparkles, Paintbrush, PenTool , Database , Store } from 'lucide-react';
+import { Code, Sparkles, Paintbrush , Database , Store, Search } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import ServiceCard from './ServiceCard';
 
@@ -41,9 +41,9 @@ const services = [
     iconColor: "text-yellow-500"
   },
   {
-    icon: <PenTool className="h-6 w-6" />,  // Calligraphy icon
-    title: "Professional Calligraphy Design",
-    description: "Beautiful handcrafted calligraphy using IndiaFont software, perfect for branding, invitations, and creative projects.",
+    icon: <Search className="h-6 w-6" />,  // SEO icon
+    title: "SEO Optimized Website",
+    description: "Boost your online visibility with search engine optimized websites that rank higher and attract more traffic.",
     color: "bg-green-50 dark:bg-green-950/30",
     iconColor: "text-green-500"
   }
