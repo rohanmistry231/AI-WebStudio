@@ -24,10 +24,25 @@ const CursorAnimation = () => {
     checkMobile();
     window.addEventListener("resize", checkMobile);
 
-    // Mouse movement handlers
-    const mouseMoveHandler = (event) => {
-      setPosition({ x: event.clientX, y: event.clientY });
-    };
+     // Mouse movement handlers
+     const mouseMoveHandler = (event) => {
+       let posX = event.clientX;
+       let posY = event.clientY;
+ 
+       // Get viewport size
+       const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+       const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+ 
+       // Get cursor size based on state
+       let cursorWidth = isClicking ? 60 : isPointer ? 80 : 50;
+       let cursorHeight = cursorWidth; // same as width
+ 
+       // Clamp the position so that the cursor stays within the viewport
+       posX = Math.max(cursorWidth / 2, Math.min(posX, vw - cursorWidth / 2));
+       posY = Math.max(cursorHeight / 2, Math.min(posY, vh - cursorHeight / 2));
+ 
+       setPosition({ x: posX, y: posY });
+     };
 
     const mouseDownHandler = () => setIsClicking(true);
     const mouseUpHandler = () => setIsClicking(false);

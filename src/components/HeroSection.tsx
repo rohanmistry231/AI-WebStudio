@@ -82,11 +82,11 @@ const HeroSection = () => {
       className="relative min-h-screen flex items-center justify-center overflow-hidden" 
       id="hero"
     >
-      {/* Background elements */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/3 right-1/3 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
-      </div>
+       {/* Background elements */}
+       <div className="absolute inset-0 -z-10">
+         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl hidden xl:block"></div>
+         <div className="absolute bottom-1/3 right-1/3 w-96 h-96 bg-primary/5 rounded-full blur-3xl hidden xl:block"></div>
+       </div>
       
       {/* Content */}
       <div className="top-0 md:py-0 sm:py-0 container max-w-4xl text-center px-6 xl:py-16 lg:py-16 mb-20">

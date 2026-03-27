@@ -15,7 +15,7 @@ const TestimonialCard = ({
   avatar,
 }: TestimonialCardProps) => {
   return (
-    <div className="glass-card rounded-xl p-6 w-[340px] flex-shrink-0 transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+    <div className="glass-card rounded-xl p-6 w-full max-w-[340px] flex-shrink transition-all duration-300 hover:shadow-md hover:-translate-y-1">
       <div className="flex flex-col h-full">
         <div className="text-primary mb-4">
           <Quote className="h-6 w-6" />

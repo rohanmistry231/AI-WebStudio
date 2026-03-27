@@ -77,10 +77,12 @@
   html {
     font-family: 'Inter', sans-serif;
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
-
+  
   body {
     @apply bg-background text-foreground font-normal;
+    overflow-x: hidden;
   }
 
   ::selection {
