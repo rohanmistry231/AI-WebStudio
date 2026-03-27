@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUp } from 'lucide-react';
+import { ArrowUp, Instagram } from 'lucide-react';
 import { Mail, Github, Linkedin, BriefcaseBusiness, Newspaper } from 'lucide-react';
 
 const Footer = () => {
@@ -37,6 +37,14 @@ const Footer = () => {
               Combining AI innovation with human creativity to build exceptional websites and digital experiences.
             </p>
             <div className="flex space-x-6 justify-center md:justify-start">
+            <a 
+              href="https://www.instagram.com/aiwebstudio.in/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-muted-foreground hover:text-primary"
+            >
+              <Instagram className="h-6 w-6" />
+            </a>
             <a 
               href="https://github.com/rohanmistry231" 
               target="_blank" 
